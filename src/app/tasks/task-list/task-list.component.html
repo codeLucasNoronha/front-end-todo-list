@@ -6,13 +6,26 @@
 </button>
 
 <section>
+  <div *ngIf="tasks.length == 0" class="alert alert-warning" role="alert">
+    Nenhuma tarefa foi cadastrada ainda.
+  </div>
   <ul class="list-group">
-    <li class="list-group-item" *ngFor="let task of tasks">
+    <li class="list-group-item task-item" *ngFor="let task of tasks">
       <div class="form-group form-check">
-        <input type="checkbox" class="form-check-input"  />
+        <input type="checkbox" class="form-check-input" [(ngModel)]="task.completed" (change)="onCompletedCheckChange(task)"/>
       </div>
-      <div [innerHTML]="task" class="task-item-description">
+      <div [innerHTML]="task.description" class="task-item-description"
           [ngClass]="task.completed ? 'task-completed' : ''">
+      </div>
+      <div>
+        <button type="button" [routerLink]="['edit',task.id]" class="btn btn-primary mr-1" >
+          Alterar
+        </button>
+      </div>
+      <div>
+        <button type="button"  class="btn btn-danger" (click)="remove(task)">
+          Excluir
+        </button>
       </div>
     </li>
 
