@@ -1,0 +1,20 @@
+<h2>Tarefas</h2>
+<hr />
+
+<button type="button" class="btn btn-primary mb-2" [routerLink]="['/new']">
+  Nova tarefa
+</button>
+
+<section>
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let task of tasks">
+      <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input"  />
+      </div>
+      <div [innerHTML]="task" class="task-item-description">
+          [ngClass]="task.completed ? 'task-completed' : ''">
+      </div>
+    </li>
+
+  </ul>
+</section>
